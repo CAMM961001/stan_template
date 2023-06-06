@@ -74,7 +74,15 @@ class StanProject:
     
 
     def ignore_stan_compile(self, model:str):
-        
+        """
+        Función para empaquetar los archivos compilados por
+        stan en un directorio __compile__.
+
+        Parámetros:
+            model: str. La ruta del modelo .stan del cual se
+                quieren empaquetar los archivos compilados.
+        """
+
         # Obtener directorio de modelo stan por empaquetar
         dir = os.path.dirname(model)
 
@@ -114,4 +122,3 @@ if __name__ == '__main__':
     )
 
     stp.ignore_stan_compile(model)
-
