@@ -110,7 +110,6 @@ class StanProject:
         print(f"Se empaquetaron archivos de proyecto '{self.NAME}' en '__compile__'")
 
 
-
 if __name__ == '__main__':
     name = 'test2'
     stp = StanProject(name)
