@@ -18,10 +18,18 @@ class StanProject:
     def create_stan_project(self, dir='models'):
         """
         Función para crear un proyecto de stan en un directorio
-        especificado.
+        especificado. El proyecto consta de una carpeta con una 
+        plantilla de stan.
 
-        Este método genera una plantilla de stan en un directorio
-        con el mismo nombre del proyecto
+        Parámetros:
+            dir: str = 'models'. El directorio en el cual se va
+                a crear el proyecto stan
+
+        Salidas:
+            stan_dir: str. La ruta global del directorio del
+                proyecto stan
+            stan_file: str. La ruta global del archivo del
+                modelo stan
         """
 
         # Directorio general de modelos
