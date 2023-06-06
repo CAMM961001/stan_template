@@ -99,10 +99,12 @@ class StanProject:
                 file = os.path.join(dir, file)
                 move(src = file, dst = compile)
 
+        print(f"Se empaquetaron archivos de proyecto '{self.NAME}' en '__compile__'")
+
 
 
 if __name__ == '__main__':
-    name = 'test'
+    name = 'test2'
     stp = StanProject(name)
     dir, model = stp.create_stan_project()
     
