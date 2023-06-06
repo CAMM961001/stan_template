@@ -73,7 +73,7 @@ class StanProject:
         return stan_dir, stan_file
     
 
-    def ignore_stan_compile(self, model:str):
+    def pack_stan_compile(self, model:str):
         """
         Función para empaquetar los archivos compilados por
         stan en un directorio __compile__.
@@ -120,4 +120,4 @@ if __name__ == '__main__':
         ,compile=True
     )
 
-    stp.ignore_stan_compile(model)
+    stp.pack_stan_compile(model)
