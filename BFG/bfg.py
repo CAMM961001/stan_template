@@ -1,9 +1,7 @@
 import os
 import sys
-import numpy as np
-import pandas as pd
 
-from shutil import copy
+from shutil import copy, move, rmtree
 from cmdstanpy import CmdStanModel
 
 
@@ -73,11 +71,45 @@ class StanProject:
             print(f"Ya existe un proyecto llamado '{self.NAME}'")
 
         return stan_dir, stan_file
+    
+
+    def ignore_stan_compile(self, model:str):
+        
+        # Obtener directorio de modelo stan por empaquetar
+        dir = os.path.dirname(model)
+
+        # Ruta a directorio de modelo empaquetado
+        compile = os.path.join(dir, '__compile__')
+
+        # Condición de modelo empaquetado existente
+        if os.path.exists(path = compile):
+            # Eliminar modelo existente
+            rmtree(compile)
+            
+        # Crear directorio para empaquetar
+        os.mkdir(path = compile)
+        
+        # Empaquetar archivos stan compilados
+        for file in os.listdir(dir):
+
+            # Condición para no empaquetar archivo base
+            if not file.endswith('.stan'):
+
+                # Mover archivo a directorio empaquetado
+                file = os.path.join(dir, file)
+                move(src = file, dst = compile)
+
 
 
 if __name__ == '__main__':
     name = 'test'
     stp = StanProject(name)
-    dir, name = stp.create_stan_project()
-    print(dir)
-    print(name)
+    dir, model = stp.create_stan_project()
+    
+    compile = CmdStanModel(
+        stan_file=model
+        ,compile=True
+    )
+
+    stp.ignore_stan_compile(model)
+
